@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Hungry Hive Admin</string>
+    <string name="app_name">Hungry Hive</string>
+    <string name="imageLogo">imageLogo</string>
+    <string name="app_name_sub_title">(Admin Dashboard)</string>
 </resources>
