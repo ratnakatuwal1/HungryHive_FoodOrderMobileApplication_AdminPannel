@@ -11,24 +11,24 @@
         android:id="@+id/textViewLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/adminLogin"
-        android:fontFamily="@font/orbitron"
         android:layout_marginTop="@dimen/_50sdp"
-        android:textStyle="bold"
+        android:fontFamily="@font/orbitron"
+        android:letterSpacing=".1"
+        android:text="@string/adminLogin"
         android:textColor="@color/black"
         android:textSize="@dimen/_35ssp"
-        android:letterSpacing=".1"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textViewLoginTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/adminLoginTitle"
-        android:fontFamily="@font/zenantique"
         android:layout_marginTop="@dimen/_5sdp"
+        android:fontFamily="@font/zenantique"
+        android:text="@string/adminLoginTitle"
         android:textColor="@color/black"
         android:textSize="@dimen/_20ssp"
         app:layout_constraintEnd_toEndOf="@+id/textViewLogin"
@@ -36,12 +36,111 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewLogin" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress2"
+        android:id="@+id/editTextEmailAddress"
+        android:layout_width="@dimen/_230sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:autofillHints="emailAddress"
+        android:background="@drawable/edittext"
+        android:drawableStart="@drawable/mail"
+        android:drawablePadding="@dimen/_10sdp"
+        android:ems="10"
+        android:fontFamily="@font/zenantique"
+        android:hint="@string/adminEmail"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/textViewLoginTitle"
+        app:layout_constraintStart_toStartOf="@+id/textViewLoginTitle"
+        app:layout_constraintTop_toBottomOf="@+id/textViewLoginTitle" />
+
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="@dimen/_230sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:autofillHints="password"
+        android:background="@drawable/edittext"
+        android:drawableStart="@drawable/lock"
+        android:drawablePadding="@dimen/_10sdp"
+        android:ems="10"
+        android:fontFamily="@font/zenantique"
+        android:hint="@string/adminPassword"
+        android:inputType="textPassword"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/editTextEmailAddress"
+        app:layout_constraintStart_toStartOf="@+id/editTextEmailAddress"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmailAddress" />
+
+    <TextView
+        android:id="@+id/textViewForgetPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="@+id/textView2"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:fontFamily="@font/zenantique"
+        android:text="@string/adminForgetPassword"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_14ssp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/adminLoginButton"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:background="@drawable/proceed"
+        android:elevation="@dimen/_5sdp"
+        android:fontFamily="@font/zenantique"
+        android:letterSpacing=".1"
+        android:text="@string/adminLogin"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_20ssp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewForgetPassword" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:fontFamily="@font/zenantique"
+        android:text="@string/adminLoginWith"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_18ssp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/adminLoginButton"
+        app:layout_constraintStart_toStartOf="@+id/adminLoginButton"
+        app:layout_constraintTop_toBottomOf="@+id/adminLoginButton" />
+
+    <ImageView
+        android:id="@+id/imageButtonFacebook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/facebook_button"
+        android:layout_marginTop="@dimen/_15sdp"
+        app:layout_constraintEnd_toStartOf="@+id/imageButtonGoogle"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:srcCompat="@drawable/facebook" />
+
+    <ImageView
+        android:id="@+id/imageButtonGoogle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/google_button"
+        android:layout_marginTop="@dimen/_15sdp"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageButtonFacebook"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:srcCompat="@drawable/google" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

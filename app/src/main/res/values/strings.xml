@@ -8,4 +8,6 @@
     <string name="adminPassword">Password</string>
     <string name="adminForgetPassword">Forget Password</string>
     <string name="adminLoginWith">Or Login With</string>
+    <string name="facebook_button">Facebook Button</string>
+    <string name="google_button">Google Button</string>
 </resources>
