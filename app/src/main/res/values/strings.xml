@@ -10,4 +10,6 @@
     <string name="adminLoginWith">Or Login With</string>
     <string name="facebook_button">Facebook Button</string>
     <string name="google_button">Google Button</string>
+    <string name="pending_order">Pending\nOrder</string>
+    <string name="completed_order">Completed\nOrder</string>
 </resources>
