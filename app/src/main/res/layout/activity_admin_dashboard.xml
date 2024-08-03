@@ -3,18 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".AdminDashboardActivity">
 
     <ImageView
         android:id="@+id/imageLogo"
-        android:contentDescription="@string/imageLogo"
         android:layout_width="@dimen/_80sdp"
         android:layout_height="@dimen/_80sdp"
-        android:layout_marginTop="@dimen/_15sdp"
         android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:contentDescription="@string/imageLogo"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,12 +24,12 @@
         android:id="@+id/textAppName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/app_name"
         android:fontFamily="@font/orbitron"
+        android:letterSpacing=".1"
+        android:text="@string/app_name"
+        android:textColor="@color/black"
         android:textSize="@dimen/_25ssp"
         android:textStyle="bold"
-        android:textColor="@color/black"
-        android:letterSpacing=".1"
         app:layout_constraintBottom_toBottomOf="@+id/imageLogo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.52"
@@ -37,21 +37,22 @@
         app:layout_constraintTop_toTopOf="@+id/imageLogo" />
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="0dp"
         android:layout_height="@dimen/_108sdp"
-        android:layout_marginTop="@dimen/_30sdp"
         android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_30sdp"
         android:layout_marginEnd="@dimen/_10sdp"
-        app:cardCornerRadius="@dimen/_15sdp"
         android:outlineSpotShadowColor="@color/black"
+        app:cardCornerRadius="@dimen/_15sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textAppName">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:background="#F4F4F4"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#F4F4F4">
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline2"
@@ -76,10 +77,10 @@
 
             <ImageView
                 android:id="@+id/imagePending"
-                android:contentDescription="@string/pending_order"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
+                android:contentDescription="@string/pending_order"
                 app:layout_constraintEnd_toEndOf="@+id/textPendingOrder"
                 app:layout_constraintStart_toStartOf="@+id/textPendingOrder"
                 app:layout_constraintTop_toTopOf="@+id/guideline"
@@ -92,10 +93,10 @@
                 android:layout_marginStart="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:fontFamily="@font/zenantique"
+                android:text="@string/pending_order"
+                android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_16ssp"
-                android:textAlignment="center"
-                android:text="@string/pending_order"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/imagePending" />
 
@@ -105,8 +106,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:fontFamily="@font/zenantique"
-                android:textColor="@color/black"
                 android:text="30"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintEnd_toEndOf="@+id/textPendingOrder"
                 app:layout_constraintStart_toStartOf="@+id/textPendingOrder"
@@ -144,9 +145,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:fontFamily="@font/zenantique"
+                android:text="30"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12ssp"
-                android:text="30"
                 app:layout_constraintEnd_toEndOf="@+id/textCompletedOrder"
                 app:layout_constraintStart_toStartOf="@+id/textCompletedOrder"
                 app:layout_constraintTop_toBottomOf="@+id/textCompletedOrder" />
@@ -155,8 +156,8 @@
                 android:id="@+id/imageEarning"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="@string/earning"
                 android:layout_marginTop="@dimen/_5sdp"
+                android:contentDescription="@string/earning"
                 android:src="@drawable/rupee"
                 app:layout_constraintEnd_toEndOf="@+id/textEarning"
                 app:layout_constraintStart_toStartOf="@+id/textEarning"
@@ -166,13 +167,13 @@
                 android:id="@+id/textEarning"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
                 android:fontFamily="@font/zenantique"
+                android:text="@string/earning"
+                android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_16ssp"
-                android:textAlignment="center"
-                android:text="@string/earning"
                 app:layout_constraintEnd_toStartOf="@+id/guideline3"
                 app:layout_constraintTop_toBottomOf="@+id/imageEarning" />
 
@@ -180,15 +181,90 @@
                 android:id="@+id/EarningValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rs: 30"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:fontFamily="@font/zenantique"
+                android:text="Rs: 30"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintEnd_toEndOf="@+id/textEarning"
                 app:layout_constraintStart_toStartOf="@+id/textEarning"
                 app:layout_constraintTop_toBottomOf="@+id/textEarning" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewAddMenu"
+        android:layout_width="@dimen/_130sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        app:cardCornerRadius="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewAllItemMenu"
+        android:layout_width="@dimen/_130sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        app:cardCornerRadius="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewAdminProfile"
+        android:layout_width="@dimen/_130sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        app:cardCornerRadius="@dimen/_15sdp"
+        app:layout_constraintEnd_toEndOf="@+id/cardViewAddMenu"
+        app:layout_constraintStart_toStartOf="@+id/cardViewAddMenu"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewAddMenu">
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewCreateNewAdmin"
+        android:layout_width="@dimen/_130sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        app:cardCornerRadius="@dimen/_15sdp"
+        app:layout_constraintEnd_toEndOf="@+id/cardViewAllItemMenu"
+        app:layout_constraintStart_toStartOf="@+id/cardViewAllItemMenu"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewAllItemMenu">
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/CardViewOrderDispatch"
+        android:layout_width="@dimen/_130sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        app:cardCornerRadius="@dimen/_15sdp"
+        app:layout_constraintEnd_toEndOf="@+id/cardViewAdminProfile"
+        app:layout_constraintStart_toStartOf="@+id/cardViewAdminProfile"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewAdminProfile">
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/CardViewUsers"
+        android:layout_width="@dimen/_130sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        app:cardCornerRadius="@dimen/_15sdp"
+        app:layout_constraintEnd_toEndOf="@+id/cardViewCreateNewAdmin"
+        app:layout_constraintStart_toStartOf="@+id/cardViewCreateNewAdmin"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewCreateNewAdmin">
 
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
