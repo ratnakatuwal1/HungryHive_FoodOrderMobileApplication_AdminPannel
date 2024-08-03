@@ -42,12 +42,15 @@
         android:layout_marginTop="@dimen/_30sdp"
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_10sdp"
+        app:cardCornerRadius="@dimen/_15sdp"
+        android:outlineSpotShadowColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textAppName">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
+            android:background="#F4F4F4"
             android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.Guideline
@@ -86,7 +89,7 @@
                 android:id="@+id/textPendingOrder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
+                android:layout_marginStart="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:fontFamily="@font/zenantique"
                 android:textColor="@color/black"
@@ -110,57 +113,81 @@
                 app:layout_constraintTop_toBottomOf="@+id/textPendingOrder" />
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/imageCompletedOrder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:contentDescription="@string/completed_order"
                 android:src="@drawable/completed"
-                app:layout_constraintEnd_toEndOf="@+id/textView4"
-                app:layout_constraintStart_toStartOf="@+id/textView4"
+                app:layout_constraintEnd_toEndOf="@+id/textCompletedOrder"
+                app:layout_constraintStart_toStartOf="@+id/textCompletedOrder"
                 app:layout_constraintTop_toTopOf="@+id/guideline" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/textCompletedOrder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="44dp"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:fontFamily="@font/zenantique"
                 android:text="@string/completed_order"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_16ssp"
+                app:layout_constraintEnd_toStartOf="@+id/textEarning"
                 app:layout_constraintStart_toEndOf="@+id/textPendingOrder"
-                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+                app:layout_constraintTop_toBottomOf="@+id/imageCompletedOrder" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/textCompletedOrderValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:fontFamily="@font/zenantique"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp"
                 android:text="30"
-                app:layout_constraintEnd_toEndOf="@+id/textView4"
-                app:layout_constraintStart_toStartOf="@+id/textView4"
-                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                app:layout_constraintEnd_toEndOf="@+id/textCompletedOrder"
+                app:layout_constraintStart_toStartOf="@+id/textCompletedOrder"
+                app:layout_constraintTop_toBottomOf="@+id/textCompletedOrder" />
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/imageEarning"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:contentDescription="@string/earning"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:src="@drawable/rupee"
-                app:layout_constraintEnd_toEndOf="@+id/textView6"
-                app:layout_constraintStart_toStartOf="@+id/textView6"
+                app:layout_constraintEnd_toEndOf="@+id/textEarning"
+                app:layout_constraintStart_toStartOf="@+id/textEarning"
                 app:layout_constraintTop_toTopOf="@+id/guideline" />
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/textEarning"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:text="Earning"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:fontFamily="@font/zenantique"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_16ssp"
+                android:textAlignment="center"
+                android:text="@string/earning"
                 app:layout_constraintEnd_toStartOf="@+id/guideline3"
-                app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+                app:layout_constraintTop_toBottomOf="@+id/imageEarning" />
 
             <TextView
+                android:id="@+id/EarningValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="30"
-                app:layout_constraintEnd_toEndOf="@+id/textView6"
-                app:layout_constraintStart_toStartOf="@+id/textView6"
-                app:layout_constraintTop_toBottomOf="@+id/textView6" />
+                android:text="Rs: 30"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:fontFamily="@font/zenantique"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintEnd_toEndOf="@+id/textEarning"
+                app:layout_constraintStart_toStartOf="@+id/textEarning"
+                app:layout_constraintTop_toBottomOf="@+id/textEarning" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

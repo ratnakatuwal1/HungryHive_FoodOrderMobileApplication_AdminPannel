@@ -12,4 +12,5 @@
     <string name="google_button">Google Button</string>
     <string name="pending_order">Pending\nOrder</string>
     <string name="completed_order">Completed\nOrder</string>
+    <string name="earning">Total\nEarning</string>
 </resources>
