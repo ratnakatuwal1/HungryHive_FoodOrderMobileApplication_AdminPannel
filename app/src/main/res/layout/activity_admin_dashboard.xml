@@ -193,78 +193,252 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewAddMenu"
+        android:id="@+id/cardViewAddItem"
         android:layout_width="@dimen/_130sdp"
         android:layout_height="@dimen/_100sdp"
         android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         app:cardCornerRadius="@dimen/_15sdp"
-        android:layout_marginTop="@dimen/_10sdp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/dashboard_shape">
+
+            <ImageView
+                android:id="@+id/imageAddItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:contentDescription="Add Item"
+                android:src="@drawable/add"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textAddItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Item"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/zenantique"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintEnd_toEndOf="@+id/imageAddItem"
+                app:layout_constraintStart_toStartOf="@+id/imageAddItem"
+                app:layout_constraintTop_toBottomOf="@+id/imageAddItem" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewAllItemMenu"
+        android:id="@+id/cardViewAllItem"
         android:layout_width="@dimen/_130sdp"
         android:layout_height="@dimen/_100sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         app:cardCornerRadius="@dimen/_15sdp"
-        android:layout_marginTop="@dimen/_10sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/dashboard_shape">
+
+            <ImageView
+                android:id="@+id/imageViewAllItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/eye"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:contentDescription="View All Item"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textViewAllItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View All Item"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/zenantique"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintEnd_toEndOf="@+id/imageViewAllItem"
+                app:layout_constraintStart_toStartOf="@+id/imageViewAllItem"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewAllItem" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewAdminProfile"
         android:layout_width="@dimen/_130sdp"
         android:layout_height="@dimen/_100sdp"
-        android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         app:cardCornerRadius="@dimen/_15sdp"
-        app:layout_constraintEnd_toEndOf="@+id/cardViewAddMenu"
-        app:layout_constraintStart_toStartOf="@+id/cardViewAddMenu"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewAddMenu">
+        app:layout_constraintEnd_toEndOf="@+id/cardViewAddItem"
+        app:layout_constraintStart_toStartOf="@+id/cardViewAddItem"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewAddItem">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/dashboard_shape">
+
+            <ImageView
+                android:id="@+id/imageAdminProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/person"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:contentDescription="Admin Profile"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textAdminProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Admin Profile"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/zenantique"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintEnd_toEndOf="@+id/imageAdminProfile"
+                app:layout_constraintStart_toStartOf="@+id/imageAdminProfile"
+                app:layout_constraintTop_toBottomOf="@+id/imageAdminProfile" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewCreateNewAdmin"
         android:layout_width="@dimen/_130sdp"
         android:layout_height="@dimen/_100sdp"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         app:cardCornerRadius="@dimen/_15sdp"
-        app:layout_constraintEnd_toEndOf="@+id/cardViewAllItemMenu"
-        app:layout_constraintStart_toStartOf="@+id/cardViewAllItemMenu"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewAllItemMenu">
+        app:layout_constraintEnd_toEndOf="@+id/cardViewAllItem"
+        app:layout_constraintStart_toStartOf="@+id/cardViewAllItem"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewAllItem">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/dashboard_shape">
+
+            <ImageView
+                android:id="@+id/imageCreateNewAdmin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/profile"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:contentDescription="Add New Admin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textCreateNewAdmin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add New Admin"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/zenantique"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintEnd_toEndOf="@+id/imageCreateNewAdmin"
+                app:layout_constraintStart_toStartOf="@+id/imageCreateNewAdmin"
+                app:layout_constraintTop_toBottomOf="@+id/imageCreateNewAdmin" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/CardViewOrderDispatch"
         android:layout_width="@dimen/_130sdp"
         android:layout_height="@dimen/_100sdp"
-        android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         app:cardCornerRadius="@dimen/_15sdp"
         app:layout_constraintEnd_toEndOf="@+id/cardViewAdminProfile"
         app:layout_constraintStart_toStartOf="@+id/cardViewAdminProfile"
         app:layout_constraintTop_toBottomOf="@+id/cardViewAdminProfile">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/dashboard_shape">
+
+            <ImageView
+                android:id="@+id/imageOrderDispatch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/bag_shopping"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:contentDescription="Order Dispatch"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textOrderDispatch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Order Dispatch"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/zenantique"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintEnd_toEndOf="@+id/imageOrderDispatch"
+                app:layout_constraintStart_toStartOf="@+id/imageOrderDispatch"
+                app:layout_constraintTop_toBottomOf="@+id/imageOrderDispatch" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/CardViewUsers"
         android:layout_width="@dimen/_130sdp"
         android:layout_height="@dimen/_100sdp"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         app:cardCornerRadius="@dimen/_15sdp"
         app:layout_constraintEnd_toEndOf="@+id/cardViewCreateNewAdmin"
         app:layout_constraintStart_toStartOf="@+id/cardViewCreateNewAdmin"
         app:layout_constraintTop_toBottomOf="@+id/cardViewCreateNewAdmin">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/dashboard_shape">
+
+            <ImageView
+                android:id="@+id/imageViewUsers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/users"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:contentDescription="View Users"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textViewUsers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View Users"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/zenantique"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintEnd_toEndOf="@+id/imageViewUsers"
+                app:layout_constraintStart_toStartOf="@+id/imageViewUsers"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewUsers" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
