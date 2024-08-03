@@ -10,7 +10,6 @@
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_marginEnd="360dp"
         android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,6 +19,93 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/testAddItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/orbitron"
+                android:letterSpacing=".1"
+                android:text="Add Item"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_35ssp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/editTextItemName"
+                android:layout_width="@dimen/_250sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:autofillHints="name"
+                android:background="@drawable/edittext"
+                android:elevation="@dimen/_5sdp"
+                android:fontFamily="@font/zenantique"
+                android:hint="Item Name"
+                android:outlineSpotShadowColor="@color/pastel_blue"
+                android:paddingStart="@dimen/_10sdp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                app:layout_constraintEnd_toEndOf="@+id/testAddItem"
+                app:layout_constraintStart_toStartOf="@+id/testAddItem"
+                app:layout_constraintTop_toBottomOf="@+id/testAddItem" />
+
+            <EditText
+                android:id="@+id/textItemPrice"
+                android:layout_width="@dimen/_250sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:autofillHints="phone"
+                android:background="@drawable/edittext"
+                android:elevation="@dimen/_5sdp"
+                android:fontFamily="@font/zenantique"
+                android:hint="Item Price"
+                android:outlineSpotShadowColor="@color/pastel_blue"
+                android:paddingStart="@dimen/_10sdp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                app:layout_constraintEnd_toEndOf="@+id/editTextItemName"
+                app:layout_constraintStart_toStartOf="@+id/editTextItemName"
+                app:layout_constraintTop_toBottomOf="@+id/editTextItemName" />
+
+            <TextView
+                android:id="@+id/textSelectImage"
+                android:layout_width="@dimen/_250sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:drawableEnd="@drawable/add"
+                android:fontFamily="@font/zenantique"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingRight="@dimen/_15sdp"
+                android:text="Select Image"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintEnd_toEndOf="@+id/textItemPrice"
+                app:layout_constraintStart_toStartOf="@+id/textItemPrice"
+                app:layout_constraintTop_toBottomOf="@+id/textItemPrice" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardViewSelectImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:cardCornerRadius="@dimen/_15sdp"
+                app:layout_constraintEnd_toEndOf="@+id/textSelectImage"
+                app:layout_constraintStart_toStartOf="@+id/textSelectImage"
+                app:layout_constraintTop_toBottomOf="@+id/textSelectImage">
+                <ImageView
+                    android:id="@+id/selectImage"
+                    android:layout_width="@dimen/_175sdp"
+                    android:layout_height="@dimen/_110sdp"
+                    android:src="@drawable/burger"
+                    android:scaleType="centerCrop"/>
+            </androidx.cardview.widget.CardView>
+
+
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
