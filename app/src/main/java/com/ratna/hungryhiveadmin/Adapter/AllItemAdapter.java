@@ -1,7 +1,6 @@
 package com.ratna.hungryhiveadmin.Adapter;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -23,7 +22,7 @@ public class AllItemAdapter extends RecyclerView.Adapter<AllItemAdapter.AllItemV
         this.itemName = new ArrayList<>(itemName);
         this.itemPrices = new ArrayList<>(itemPrices);
         this.itemImages = new ArrayList<>(itemImages);
-        this.itemQuantity = new int[itemQuantity.size()];
+        this.itemQuantity = new int[itemName.size()];
         Arrays.fill(itemQuantity, 1);
     }
 
@@ -36,11 +35,11 @@ public class AllItemAdapter extends RecyclerView.Adapter<AllItemAdapter.AllItemV
 
     @Override
     public void onBindViewHolder(@NonNull AllItemAdapter.AllItemViewHolder holder, int position) {
-String itemName = this.itemName.get(position);
-        String itemPrice = this.itemPrices.get(position);
-        int itemImage = this.itemImages.get(position);
-        int itemQuantity = this.itemQuantity[position];
-        holder.bind(itemName, itemPrice, itemImage, itemQuantity, position);
+String itemNames = this.itemName.get(position);
+        String itemPrices = this.itemPrices.get(position);
+        int itemImages = this.itemImages.get(position);
+        int itemQuantities = this.itemQuantity[position];
+        holder.bind(itemNames, itemPrices, itemImages, itemQuantities, position);
     }
 
     @Override
@@ -51,7 +50,7 @@ String itemName = this.itemName.get(position);
     public class AllItemViewHolder extends RecyclerView.ViewHolder {
         private AllItemBinding binding;
 
-        public AllItemViewHolder(@NonNull View itemView) {
+        public AllItemViewHolder(@NonNull AllItemBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
@@ -63,14 +62,37 @@ String itemName = this.itemName.get(position);
             binding.textQty.setText(String.valueOf(itemQuantity));
 
             binding.buttonMinus.setOnClickListener(view -> {
-                if (itemQuantity[position] > 1){
-                    itemQuantity[position]--;
+                if (itemQuantity > 1){
+                    itemQuantity--;
                     binding.textQty.setText(String.valueOf(itemQuantity[position]));
                 }
             });
 
+binding.buttonPlus.setOnClickListener(view -> {
+    if (itemQuantity[position] < 10) {
+        itemQuantity[position]++;
+        binding.textQty.setText(String.valueOf(itemQuantity[position]));
+    }
+});
 
+binding.buttonDelete.setOnClickListener(view -> {
+    removeItem(position);
+});
 
         }
+    }
+
+    private void removeItem(int position) {
+        itemName.remove(position);
+        itemPrices.remove(position);
+        itemImages.remove(position);
+
+        int[] newQuantities = new int[itemQuantity.length - 1];
+        System.arraycopy(itemQuantity, 0, newQuantities, 0, position);
+        System.arraycopy(itemQuantity, position + 1, newQuantities, position, itemQuantity.length - position - 1);
+        itemQuantity = newQuantities;
+
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, itemName.size());
     }
 }
