@@ -172,6 +172,8 @@
                 android:paddingStart="@dimen/_10sdp"
                 android:text="1. adf\n2. sdf"
                 android:textSize="@dimen/_12ssp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
                 app:layout_constraintEnd_toEndOf="@+id/textIngredients"
                 app:layout_constraintStart_toStartOf="@+id/textIngredients"
                 app:layout_constraintTop_toBottomOf="@+id/textIngredients" />

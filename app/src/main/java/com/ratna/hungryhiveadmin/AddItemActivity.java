@@ -1,6 +1,8 @@
 package com.ratna.hungryhiveadmin;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,6 +16,7 @@ public class AddItemActivity extends AppCompatActivity {
   ImageView selectImage;
   TextView textSelectImage;
 
+
   ActivityResultLauncher<PickVisualMediaRequest> pickImage;
 
     @Override
@@ -24,6 +27,7 @@ public class AddItemActivity extends AppCompatActivity {
 
         selectImage = findViewById(R.id.selectImage);
         textSelectImage = findViewById(R.id.textSelectImage);
+
 
         pickImage = registerForActivityResult(
                 new ActivityResultContracts.PickVisualMedia(),
@@ -40,5 +44,7 @@ public class AddItemActivity extends AppCompatActivity {
                     .build();
             pickImage.launch(request);
         });
+
+
     }
 }
