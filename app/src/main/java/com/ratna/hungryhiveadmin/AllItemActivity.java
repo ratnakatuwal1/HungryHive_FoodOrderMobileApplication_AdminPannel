@@ -4,17 +4,11 @@ import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ratna.hungryhiveadmin.Adapter.AllItemAdapter;
-import com.ratna.hungryhiveadmin.databinding.ActivityAllItemBinding;
-import com.ratna.hungryhiveadmin.databinding.AllItemBinding;
+import com.ratna.hungryhiveadmin.adapter.AllItemAdapter;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
