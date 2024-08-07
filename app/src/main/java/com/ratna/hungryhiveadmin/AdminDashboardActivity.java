@@ -38,7 +38,8 @@ CardView cardViewAddItem, cardViewAllItem, cardViewAdminProfile, cardViewCreateN
         });
 
         cardViewAdminProfile.setOnClickListener(view -> {
-
+Intent intent = new Intent(AdminDashboardActivity.this, AdminProfileActivity.class);
+startActivity(intent);
         });
 
         cardViewCreateNewAdmin.setOnClickListener(view -> {
