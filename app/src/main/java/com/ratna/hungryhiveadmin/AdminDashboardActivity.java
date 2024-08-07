@@ -43,7 +43,8 @@ startActivity(intent);
         });
 
         cardViewCreateNewAdmin.setOnClickListener(view -> {
-
+Intent intent = new Intent(AdminDashboardActivity.this, AddNewAdmin.class);
+startActivity(intent);
         });
 
         CardViewOrderDispatch.setOnClickListener(view -> {
