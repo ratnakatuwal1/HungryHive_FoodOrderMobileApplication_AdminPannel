@@ -48,7 +48,8 @@ startActivity(intent);
         });
 
         CardViewOrderDispatch.setOnClickListener(view -> {
-
+Intent intent = new Intent(AdminDashboardActivity.this, PendingOrder.class);
+startActivity(intent);
         });
 
         CardViewUsers.setOnClickListener(view -> {

@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ratna.hungryhiveadmin.adapter.PendingOrderAdapter;
+import com.ratna.hungryhiveadmin.Adapter.PendingOrderAdapter;
 
 import java.util.Arrays;
 import java.util.List;

@@ -1,7 +1,6 @@
-package com.ratna.hungryhiveadmin.adapter;
+package com.ratna.hungryhiveadmin.Adapter;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
