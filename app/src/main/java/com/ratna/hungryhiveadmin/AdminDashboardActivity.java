@@ -11,7 +11,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class AdminDashboardActivity extends AppCompatActivity {
-CardView cardViewAddItem, cardViewAllItem, cardViewAdminProfile, cardViewCreateNewAdmin, CardViewOrderDispatch, CardViewUsers;
+    CardView cardViewAddItem, cardViewAllItem, cardViewAdminProfile, cardViewCreateNewAdmin, CardViewOrderDispatch, CardViewUsers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,22 +38,23 @@ CardView cardViewAddItem, cardViewAllItem, cardViewAdminProfile, cardViewCreateN
         });
 
         cardViewAdminProfile.setOnClickListener(view -> {
-Intent intent = new Intent(AdminDashboardActivity.this, AdminProfileActivity.class);
-startActivity(intent);
+            Intent intent = new Intent(AdminDashboardActivity.this, AdminProfileActivity.class);
+            startActivity(intent);
         });
 
         cardViewCreateNewAdmin.setOnClickListener(view -> {
-Intent intent = new Intent(AdminDashboardActivity.this, AddNewAdmin.class);
-startActivity(intent);
+            Intent intent = new Intent(AdminDashboardActivity.this, AddNewAdmin.class);
+            startActivity(intent);
         });
 
         CardViewOrderDispatch.setOnClickListener(view -> {
-Intent intent = new Intent(AdminDashboardActivity.this, PendingOrder.class);
-startActivity(intent);
+            Intent intent = new Intent(AdminDashboardActivity.this, PendingOrder.class);
+            startActivity(intent);
         });
 
         CardViewUsers.setOnClickListener(view -> {
-
+            Intent intent = new Intent(AdminDashboardActivity.this, ViewCustomerList.class);
+            startActivity(intent);
         });
     }
 }
