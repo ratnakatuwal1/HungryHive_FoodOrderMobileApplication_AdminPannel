@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "514624847078",
+    "project_id": "hungry-hive-ccd15",
+    "storage_bucket": "hungry-hive-ccd15.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:514624847078:android:815a2dc9779630a51d0f27",
+        "android_client_info": {
+          "package_name": "com.ratna.hungryhiveadmin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbtt0V1tDPUuKVJ-FdkbzuIChcZWROeZ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
