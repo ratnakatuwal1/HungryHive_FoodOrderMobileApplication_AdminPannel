@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/BackgroundColor"
     tools:context=".SplashScreenActivity">
 
     <ImageView
@@ -25,7 +26,7 @@
         android:text="@string/app_name"
         android:fontFamily="@font/orbitron"
         android:textStyle="bold"
-        android:textColor="@color/red"
+        android:textColor="@color/HeadingTextColor"
         android:textSize="@dimen/_35ssp"
         android:letterSpacing=".1"
         app:layout_constraintEnd_toEndOf="@+id/imageViewLogo"
@@ -39,7 +40,7 @@
         android:text="@string/app_name_sub_title"
         android:fontFamily="@font/orbitron"
         android:textStyle="bold"
-        android:textColor="@color/red"
+        android:textColor="@color/SubHeadingTextColor"
         android:textSize="@dimen/_25ssp"
         android:letterSpacing=".1"
         android:layout_marginTop="@dimen/_10sdp"

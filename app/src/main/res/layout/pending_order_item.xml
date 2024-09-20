@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/BackgroundColor"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
@@ -27,7 +28,7 @@
                 android:fontFamily="@font/zenantique"
                 android:text="Text View"
                 android:layout_marginStart="@dimen/_5sdp"
-                android:textColor="@color/black"
+                android:textColor="@color/ParagraphTextColor"
                 android:textSize="@dimen/_14ssp"
                 app:layout_constraintBottom_toTopOf="@+id/textQuantity"
                 app:layout_constraintStart_toEndOf="@+id/imageCartFood"
@@ -40,7 +41,7 @@
                 android:fontFamily="@font/zenantique"
                 android:text="Text View"
                 android:layout_marginStart="@dimen/_5sdp"
-                android:textColor="@color/black"
+                android:textColor="@color/SecondaryTextColor"
                 android:textSize="@dimen/_14ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageCartFood"
@@ -48,9 +49,14 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/buttonPending"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/_90sdp"
+                android:layout_height="@dimen/_35sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/proceed"
+                android:fontFamily="@font/zenantique"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12ssp"
+                android:textAllCaps="false"
                 android:text="Button"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
