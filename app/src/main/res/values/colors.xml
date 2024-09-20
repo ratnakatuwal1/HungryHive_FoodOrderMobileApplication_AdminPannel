@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="red">#C2020D</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
     <color name="transparent">#00000000</color>
-    <color name="pastel_blue">#A7C7E7</color>
+
+    <color name="shadowColor">#AEC6CF</color>
+
+    <color name="SecondaryTextColor">#757575</color>
+
+    <color name="PrimaryColor">#FF6F61</color> <!-- Coral Red -->
+    <color name="AccentColor">#FFD54F</color> <!-- Sunshine Yellow -->
+    <color name="BackgroundColor">#F9F9F9</color> <!-- Almost White -->
+    <color name="CardBackgroundColor">#FFFFFF</color> <!-- White -->
+
+    <!-- Text colors -->
+    <color name="HeadingTextColor">#2E3B4E</color> <!-- Charcoal Navy -->
+    <color name="SubHeadingTextColor">#4F5B62</color> <!-- Cool Gray -->
+    <color name="ParagraphTextColor">#616161</color> <!-- Slate Gray -->
+
 </resources>

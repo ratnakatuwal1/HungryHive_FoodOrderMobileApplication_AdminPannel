@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-<corners
-    android:radius="@dimen/_15sdp"/>
+    <!-- Rounded corners for the shape -->
+    <corners android:radius="@dimen/_15sdp" />
 
-    <solid android:color="#C9BBBB"/>
-    <stroke android:color="#f4f4f4"
-        android:width="@dimen/_1sdp"/>
+    <!-- Solid background color -->
+    <solid android:color="@color/CardBackgroundColor" />
+
+    <!-- Border stroke around the shape -->
+    <stroke
+        android:color="@color/SecondaryTextColor"
+        android:width="@dimen/_1sdp" />
 </shape>

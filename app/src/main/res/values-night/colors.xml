@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="SecondaryTextColor">#B0BEC5</color>
+
+    <color name="shadowColor">#AEC6CF</color>
+
+    <color name="PrimaryColor">#FF6F61</color> <!-- Coral Red -->
+    <color name="AccentColor">#FFD54F</color> <!-- Sunshine Yellow -->
+    <color name="BackgroundColor">#1D1E22</color> <!-- Deep Charcoal -->
+    <color name="CardBackgroundColor">#2C2C34</color> <!-- Muted Black -->
+
+    <!-- Text colors -->
+    <color name="HeadingTextColor">#F5F5F5</color> <!-- Off-White -->
+    <color name="SubHeadingTextColor">#B0BEC5</color> <!-- Muted Gray-Blue -->
+    <color name="ParagraphTextColor">#CFD8DC</color> <!-- Pale Gray -->
+</resources>
