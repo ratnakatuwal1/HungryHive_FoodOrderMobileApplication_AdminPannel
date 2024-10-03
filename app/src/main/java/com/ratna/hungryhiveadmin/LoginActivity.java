@@ -11,6 +11,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.facebook.CallbackManager;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -31,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
+    CallbackManager callbackManager;
 
 
     @Override
@@ -44,11 +46,12 @@ public class LoginActivity extends AppCompatActivity {
         imageButtonFacebook = findViewById(R.id.imageButtonFacebook);
         imageButtonGoogle = findViewById(R.id.imageButtonGoogle);
 
+        mAuth = FirebaseAuth.getInstance();
+        databaseReference = FirebaseDatabase.getInstance().getReference("Admins");
+
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         gsc = GoogleSignIn.getClient(this, gso);
 
-        mAuth = FirebaseAuth.getInstance();
-        databaseReference = FirebaseDatabase.getInstance().getReference("Admins");
 
         adminLoginButton.setOnClickListener(view -> {
             String email = editTextEmailAddress.getText().toString().trim();
@@ -56,8 +59,7 @@ public class LoginActivity extends AppCompatActivity {
 
             if (!email.isEmpty() && !password.isEmpty()) {
                 adminLoginButton.setEnabled(false);
-                Admin admin = new Admin("", email, password, "", "", "", "");
-                loginAdmin(email, admin.password);
+                loginAdmin(email, password);
             } else {
                 Toast.makeText(LoginActivity.this, "Please enter email and password", Toast.LENGTH_SHORT).show();
             }
@@ -126,10 +128,9 @@ public class LoginActivity extends AppCompatActivity {
     private void saveAdminDetails(FirebaseUser user) {
         String userId = user.getUid();
         String email = user.getEmail();
-        String hashedPassword = Admin.hashPassword(editTextPassword.getText().toString().trim());
 
         // Creating Admin object with default values for now
-        Admin admin = new Admin(userId, email, hashedPassword, "Admin Name", "Admin Address", "Admin Phone", "Profile Image URL");
+        Admin admin = new Admin(userId, email, "Admin Name", "Admin Address", "Admin Phone", "Profile Image URL");
 
         // Save admin to the Firebase Realtime Database
         databaseReference.child(userId).setValue(admin).addOnCompleteListener(saveTask -> {
@@ -143,9 +144,4 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
-    private String hashPassword(String password){
-        return String.valueOf(password.hashCode());
-    }
-
 }
