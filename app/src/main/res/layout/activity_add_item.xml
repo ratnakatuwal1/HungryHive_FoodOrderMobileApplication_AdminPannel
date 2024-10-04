@@ -36,7 +36,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/editTextItemName"
+                android:id="@+id/foodName"
                 android:layout_width="@dimen/_250sdp"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -54,7 +54,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/testAddItem" />
 
             <EditText
-                android:id="@+id/textItemPrice"
+                android:id="@+id/foodPrice"
                 android:layout_width="@dimen/_250sdp"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -67,9 +67,9 @@
                 android:paddingStart="@dimen/_10sdp"
                 android:textColor="@color/ParagraphTextColor"
                 android:textColorHint="@color/SecondaryTextColor"
-                app:layout_constraintEnd_toEndOf="@+id/editTextItemName"
-                app:layout_constraintStart_toStartOf="@+id/editTextItemName"
-                app:layout_constraintTop_toBottomOf="@+id/editTextItemName" />
+                app:layout_constraintEnd_toEndOf="@+id/foodName"
+                app:layout_constraintStart_toStartOf="@+id/foodName"
+                app:layout_constraintTop_toBottomOf="@+id/foodName" />
 
             <TextView
                 android:id="@+id/textSelectImage"
@@ -85,9 +85,9 @@
                 android:text="Select Image"
                 android:textColor="@color/ParagraphTextColor"
                 android:textSize="@dimen/_14ssp"
-                app:layout_constraintEnd_toEndOf="@+id/textItemPrice"
-                app:layout_constraintStart_toStartOf="@+id/textItemPrice"
-                app:layout_constraintTop_toBottomOf="@+id/textItemPrice" />
+                app:layout_constraintEnd_toEndOf="@+id/foodPrice"
+                app:layout_constraintStart_toStartOf="@+id/foodPrice"
+                app:layout_constraintTop_toBottomOf="@+id/foodPrice" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewSelectImage"
@@ -125,7 +125,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/cardViewSelectImage" />
 
             <EditText
-                android:id="@+id/editTextDescription"
+                android:id="@+id/description"
                 android:layout_width="@dimen/_250sdp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edittext"
@@ -158,10 +158,10 @@
                 android:paddingStart="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="@+id/textDescription"
                 app:layout_constraintStart_toStartOf="@+id/textDescription"
-                app:layout_constraintTop_toBottomOf="@+id/editTextDescription" />
+                app:layout_constraintTop_toBottomOf="@+id/description" />
 
             <EditText
-                android:id="@+id/editTextIngredients"
+                android:id="@+id/ingredients"
                 android:layout_width="@dimen/_250sdp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -195,9 +195,9 @@
                 android:textSize="@dimen/_20ssp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/editTextIngredients"
-                app:layout_constraintStart_toStartOf="@+id/editTextIngredients"
-                app:layout_constraintTop_toBottomOf="@+id/editTextIngredients" />
+                app:layout_constraintEnd_toEndOf="@+id/ingredients"
+                app:layout_constraintStart_toStartOf="@+id/ingredients"
+                app:layout_constraintTop_toBottomOf="@+id/ingredients" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
