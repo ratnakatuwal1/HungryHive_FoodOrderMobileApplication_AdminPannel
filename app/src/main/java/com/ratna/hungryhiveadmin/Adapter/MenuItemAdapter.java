@@ -1,24 +1,24 @@
 package com.ratna.hungryhiveadmin.Adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ratna.hungryhiveadmin.Model.AllMenu;
 import com.ratna.hungryhiveadmin.databinding.AllItemBinding;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class AllItemAdapter extends RecyclerView.Adapter<AllItemAdapter.AllItemViewHolder> {
-    private int[] itemQuantity;
-    private List<String> itemNames;
-    private List<String> itemPrices;
-    private List<Integer> itemImages;
+public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.AllItemViewHolder> {
+    Context context;
+    ArrayList<AllMenu> menuList;
 
-    public AllItemAdapter(List<String> itemNames, List<String> itemPrices, List<Integer> itemImages) {
+    public MenuItemAdapter(List<String> itemNames, List<String> itemPrices, List<Integer> itemImages) {
         this.itemNames = new ArrayList<>(itemNames);
         this.itemPrices = new ArrayList<>(itemPrices);
         this.itemImages = new ArrayList<>(itemImages);
@@ -28,23 +28,23 @@ public class AllItemAdapter extends RecyclerView.Adapter<AllItemAdapter.AllItemV
 
     @NonNull
     @Override
-    public AllItemAdapter.AllItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MenuItemAdapter.AllItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         AllItemBinding binding = AllItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new AllItemViewHolder(binding);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AllItemAdapter.AllItemViewHolder holder, int position) {
-String name = this.itemNames.get(position);
-        String price = this.itemPrices.get(position);
-        int image = this.itemImages.get(position);
-        int quantity = this.itemQuantity[position];
+    public void onBindViewHolder(@NonNull MenuItemAdapter.AllItemViewHolder holder, int position) {
+String name = this.menuList.get(position);
+        String price = this.menuList.get(position);
+        int image = this.menuList.get(position);
+        int quantity = this.menuList[position];
         holder.bind(name, price, image, quantity, position);
     }
 
     @Override
     public int getItemCount() {
-        return itemNames.size();
+        return menuList.size();
     }
 
     public class AllItemViewHolder extends RecyclerView.ViewHolder {
@@ -62,16 +62,16 @@ String name = this.itemNames.get(position);
             binding.textQty.setText(String.valueOf(quantity));
 
             binding.buttonMinus.setOnClickListener(view -> {
-                if (itemQuantity[position] > 1){
-                    itemQuantity[position]--;
-                    binding.textQty.setText(String.valueOf(itemQuantity[position]));
+                if (menuList[position] > 1){
+                    menuList[position]--;
+                    binding.textQty.setText(String.valueOf(menuList[position]));
                 }
             });
 
 binding.buttonPlus.setOnClickListener(view -> {
-    if (itemQuantity[position] < 10) {
-        itemQuantity[position]++;
-        binding.textQty.setText(String.valueOf(itemQuantity[position]));
+    if (menuList[position] < 10) {
+        menuList[position]++;
+        binding.textQty.setText(String.valueOf(menuList[position]));
     }
 });
 
@@ -83,16 +83,16 @@ binding.buttonDelete.setOnClickListener(view -> {
     }
 
     private void removeItem(int position) {
-        itemNames.remove(position);
-        itemPrices.remove(position);
-        itemImages.remove(position);
+        menuList.remove(position);
+        menuList.remove(position);
+        menuList.remove(position);
 
         int[] newQuantities = new int[itemQuantity.length - 1];
-        System.arraycopy(itemQuantity, 0, newQuantities, 0, position);
-        System.arraycopy(itemQuantity, position + 1, newQuantities, position, itemQuantity.length - position - 1);
-        itemQuantity = newQuantities;
+        System.arraycopy(menuList, 0, newQuantities, 0, position);
+        System.arraycopy(menuList, position + 1, newQuantities, position, menuList.length - position - 1);
+        menuList = newQuantities;
 
         notifyItemRemoved(position);
-        notifyItemRangeChanged(position, itemNames.size());
+        notifyItemRangeChanged(position, menuList.size());
     }
 }

@@ -7,14 +7,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ratna.hungryhiveadmin.Adapter.AllItemAdapter;
+import com.ratna.hungryhiveadmin.Adapter.MenuItemAdapter;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class AllItemActivity extends AppCompatActivity {
 RecyclerView allItemRecyclerView;
-AllItemAdapter adapter;
+MenuItemAdapter adapter;
 
 
     @Override
@@ -29,7 +29,7 @@ AllItemAdapter adapter;
         List<String> itemPrices = Arrays.asList("100", "200");
         List<Integer> itemImages = Arrays.asList(R.drawable.burger, R.drawable.pizza);
 
-        adapter = new AllItemAdapter(itemNames, itemPrices, itemImages);
+        adapter = new MenuItemAdapter(itemNames, itemPrices, itemImages);
         allItemRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         allItemRecyclerView.setAdapter(adapter);
     }

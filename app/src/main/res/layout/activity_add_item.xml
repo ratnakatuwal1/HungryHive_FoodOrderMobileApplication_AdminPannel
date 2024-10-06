@@ -104,7 +104,7 @@
                     android:layout_width="@dimen/_175sdp"
                     android:layout_height="@dimen/_110sdp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/burger" />
+                    android:src="@drawable/a" />
 
             </androidx.cardview.widget.CardView>
 
@@ -127,17 +127,16 @@
             <EditText
                 android:id="@+id/description"
                 android:layout_width="@dimen/_250sdp"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_40sdp"
                 android:background="@drawable/edittext"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad "
+                android:hint="Add short description"
                 android:textColor="@color/ParagraphTextColor"
                 android:textColorHint="@color/SecondaryTextColor"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:autofillHints="name"
                 android:elevation="@dimen/_5sdp"
                 android:fontFamily="@font/zenantique"
-                android:textSize="@dimen/_12ssp"
-                android:textAlignment="center"
+                android:textSize="@dimen/_14ssp"
                 android:outlineSpotShadowColor="@color/shadowColor"
                 android:paddingStart="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="@+id/textDescription"
@@ -163,16 +162,16 @@
             <EditText
                 android:id="@+id/ingredients"
                 android:layout_width="@dimen/_250sdp"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_40sdp"
+                android:hint="Add ingredients"
+                android:background="@drawable/edittext"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:autofillHints="name"
-                android:background="@drawable/edittext"
                 android:elevation="@dimen/_5sdp"
                 android:fontFamily="@font/zenantique"
                 android:outlineSpotShadowColor="@color/shadowColor"
                 android:paddingStart="@dimen/_10sdp"
-                android:text="1. adf\n2. sdf"
-                android:textSize="@dimen/_12ssp"
+                android:textSize="@dimen/_14ssp"
                 android:textColor="@color/ParagraphTextColor"
                 android:textColorHint="@color/SecondaryTextColor"
                 app:layout_constraintEnd_toEndOf="@+id/textIngredients"

@@ -62,8 +62,10 @@ public class AddItemActivity extends AppCompatActivity {
 
             if (!foodName.isEmpty() && !foodPrice.isEmpty() && !foodDescription.isEmpty() && !foodIngredients.isEmpty()) {
                 uploadData();
+                Toast.makeText(this, "Item added successfully!", Toast.LENGTH_SHORT).show();
+                finish();
             } else {
-                Toast.makeText(this, "Please fill all the fields!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Fill all the details!", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -120,7 +122,7 @@ public class AddItemActivity extends AppCompatActivity {
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void unused) {
-                                                Toast.makeText(AddItemActivity.this, "Data uploaded Successfully!", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(AddItemActivity.this, "Data uploaded successfully!", Toast.LENGTH_SHORT).show();
                                             }
                                         })
                                         .addOnFailureListener(new OnFailureListener() {
