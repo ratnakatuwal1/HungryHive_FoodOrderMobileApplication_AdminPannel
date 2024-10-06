@@ -7,33 +7,40 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.PickVisualMediaRequest;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.ratna.hungryhiveadmin.Model.AllMenu;
 
 public class AddItemActivity extends AppCompatActivity {
-  ImageView selectImage;
-  TextView textSelectImage;
-  Button buttonAddItem;
+    ImageView selectImage;
+    TextView textSelectImage;
+    Button buttonAddItem;
 
-  String foodName;
-  String foodPrice;
-  String foodDescription;
-  String foodIngredients;
-  Uri foodImage = null;
+    String foodName;
+    String foodPrice;
+    String foodDescription;
+    String foodIngredients;
+    Uri foodImage = null;
 
-  FirebaseAuth mAuth;
-  FirebaseDatabase database;
+    FirebaseAuth mAuth;
+    FirebaseDatabase database;
 
-
-  ActivityResultLauncher<PickVisualMediaRequest> pickImage;
+    ActivityResultLauncher<PickVisualMediaRequest> pickImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,22 +55,31 @@ public class AddItemActivity extends AppCompatActivity {
         buttonAddItem = findViewById(R.id.buttonAddItem);
 
         buttonAddItem.setOnClickListener(view -> {
-            foodName = ((EditText) findViewById(R.id.foodName)).getText().toString();
-            foodPrice = ((EditText) findViewById(R.id.foodPrice)).getText().toString();
-            foodDescription = ((EditText) findViewById(R.id.description)).getText().toString();
-            foodIngredients = ((EditText) findViewById(R.id.ingredients)).getText().toString();
+            foodName = ((EditText) findViewById(R.id.foodName)).getText().toString().trim();
+            foodPrice = ((EditText) findViewById(R.id.foodPrice)).getText().toString().trim();
+            foodDescription = ((EditText) findViewById(R.id.description)).getText().toString().trim();
+            foodIngredients = ((EditText) findViewById(R.id.ingredients)).getText().toString().trim();
 
-            if (foodName.isEmpty() || foodPrice.isEmpty() || foodDescription.isEmpty() || foodIngredients.isEmpty()) {
-
+            if (!foodName.isEmpty() && !foodPrice.isEmpty() && !foodDescription.isEmpty() && !foodIngredients.isEmpty()) {
+                uploadData();
+            } else {
+                Toast.makeText(this, "Please fill all the fields!", Toast.LENGTH_SHORT).show();
             }
         });
 
+        selectImage.setOnClickListener(view -> {
+            PickVisualMediaRequest request = new PickVisualMediaRequest.Builder()
+                    .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
+                    .build();
+            pickImage.launch(request);
+        });
 
         pickImage = registerForActivityResult(
                 new ActivityResultContracts.PickVisualMedia(),
                 uri -> {
                     if (uri != null) {
                         selectImage.setImageURI(uri);
+                        foodImage = uri;
                     }
                 }
         );
@@ -74,7 +90,62 @@ public class AddItemActivity extends AppCompatActivity {
                     .build();
             pickImage.launch(request);
         });
+    }
 
+    private void uploadData() {
+        DatabaseReference menuRef = database.getReference("Menu");
+        String newItemKey = menuRef.push().getKey();
 
+        if (foodImage != null) {
+            StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+            StorageReference imageRef = storageRef.child("menu_images/" + newItemKey + ".jpg");
+            UploadTask uploadTask = imageRef.putFile(foodImage);
+
+            uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            AllMenu newItem = new AllMenu(
+                                    foodName,
+                                    foodPrice,
+                                    foodDescription,
+                                    foodIngredients,
+                                    uri.toString()
+                            );
+
+                            if (newItemKey != null) {
+                                menuRef.child(newItemKey).setValue(newItem)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void unused) {
+                                                Toast.makeText(AddItemActivity.this, "Data uploaded Successfully!", Toast.LENGTH_SHORT).show();
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                // Show failure toast
+                                                Toast.makeText(AddItemActivity.this, "Failed to upload data: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                            } else {
+                                // Handle the case when newItemKey is null
+                                Toast.makeText(AddItemActivity.this, "Image upload failed", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    // Handle any failure in image upload
+                    Toast.makeText(AddItemActivity.this, "Failed to upload image: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            Toast.makeText(AddItemActivity.this, "Please select an image.", Toast.LENGTH_SHORT).show();
+        }
     }
 }

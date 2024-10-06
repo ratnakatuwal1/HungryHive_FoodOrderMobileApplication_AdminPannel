@@ -13,4 +13,6 @@
     <string name="pending_order">Pending\nOrder</string>
     <string name="completed_order">Completed\nOrder</string>
     <string name="earning">Total\nEarning</string>
+    <string name="default_web_client_id">514624847078-slkp6j281nnvflletutt4f5dtqmvh38i</string>
+
 </resources>
