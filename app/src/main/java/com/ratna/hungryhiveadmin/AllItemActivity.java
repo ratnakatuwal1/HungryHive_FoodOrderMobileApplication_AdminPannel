@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ratna.hungryhiveadmin.Adapter.MenuItemAdapter;
+import com.ratna.hungryhiveadmin.Model.AllMenu;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,11 +27,11 @@ MenuItemAdapter adapter;
 
         allItemRecyclerView = findViewById(R.id.allItemRecyclerView);
 
-        List<String> itemNames = Arrays.asList("Burger", "Pizza");
-        List<String> itemPrices = Arrays.asList("100", "200");
-        List<Integer> itemImages = Arrays.asList(R.drawable.burger, R.drawable.pizza);
+        ArrayList<AllMenu> menuList = new ArrayList<>();
+        menuList.add(new AllMenu("Burger", "100", "Delicious burger", "Beef, Lettuce, Cheese", String.valueOf(R.drawable.burger)));
+        menuList.add(new AllMenu("Pizza", "200", "Cheesy pizza", "Cheese, Tomato, Olives", String.valueOf(R.drawable.pizza)));
 
-        adapter = new MenuItemAdapter(itemNames, itemPrices, itemImages);
+        adapter = new MenuItemAdapter(this, menuList);
         allItemRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         allItemRecyclerView.setAdapter(adapter);
     }

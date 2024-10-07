@@ -53,7 +53,5 @@ public class AllMenu {
         this.foodDescription = foodDescription;
         this.foodIngredients = foodIngredients;
         this.foodImage = string;
-
-
     }
 }

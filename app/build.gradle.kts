@@ -54,4 +54,5 @@ dependencies {
     implementation("com.facebook.android:facebook-android-sdk:17.0.2")
     implementation(platform("com.google.firebase:firebase-bom:33.4.0"))
     implementation("com.google.firebase:firebase-auth")
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
 }
