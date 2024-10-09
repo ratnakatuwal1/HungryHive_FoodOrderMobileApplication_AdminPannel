@@ -1,12 +1,26 @@
 package com.ratna.hungryhiveadmin.Model;
 
 public class AllMenu {
-    String foodName = null;
-    String foodPrice = null;
-    String foodDescription = null;
-    String foodIngredients = null;
-    String foodImage = null;
+    String foodName;
+    String foodPrice;
+    String foodDescription;
+    String foodIngredients;
+    String foodImage;
 
+    // No-argument constructor required for Firebase deserialization
+    public AllMenu() {
+    }
+
+    // Parameterized constructor
+    public AllMenu(String foodName, String foodPrice, String foodDescription, String foodIngredients, String foodImage) {
+        this.foodName = foodName;
+        this.foodPrice = foodPrice;
+        this.foodDescription = foodDescription;
+        this.foodIngredients = foodIngredients;
+        this.foodImage = foodImage;
+    }
+
+    // Getter and setter methods
     public String getFoodName() {
         return foodName;
     }
@@ -45,13 +59,5 @@ public class AllMenu {
 
     public void setFoodImage(String foodImage) {
         this.foodImage = foodImage;
-    }
-
-    public AllMenu(String foodName, String foodPrice, String foodDescription, String foodIngredients, String string) {
-        this.foodName = foodName;
-        this.foodPrice = foodPrice;
-        this.foodDescription = foodDescription;
-        this.foodIngredients = foodIngredients;
-        this.foodImage = string;
     }
 }

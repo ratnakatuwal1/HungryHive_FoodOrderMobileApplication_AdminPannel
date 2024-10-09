@@ -61,6 +61,7 @@
                 android:autofillHints="phone"
                 android:background="@drawable/edittext"
                 android:elevation="@dimen/_5sdp"
+                android:inputType="number"
                 android:fontFamily="@font/zenantique"
                 android:hint="Item Price"
                 android:outlineSpotShadowColor="@color/shadowColor"

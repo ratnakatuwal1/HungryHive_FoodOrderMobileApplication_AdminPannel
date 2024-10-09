@@ -1,6 +1,7 @@
 package com.ratna.hungryhiveadmin;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 public class AllItemActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
-    ArrayList<AllMenu> menuList;
+    ArrayList<AllMenu> menuItem;
     RecyclerView allItemRecyclerView;
     MenuItemAdapter adapter;
 
@@ -32,43 +33,45 @@ public class AllItemActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_all_item);
 
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference();
-        retrieveMenuItem();
-
         allItemRecyclerView = findViewById(R.id.allItemRecyclerView);
+        allItemRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-//        ArrayList<AllMenu> menuList = new ArrayList<>();
+//        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
 
-//        adapter = new MenuItemAdapter(this, menuList);
-//        allItemRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        menuItem = new ArrayList<>();
+//        adapter = new MenuItemAdapter(this, menuItem);
 //        allItemRecyclerView.setAdapter(adapter);
+
+        retrieveMenuItem();
     }
 
     private void retrieveMenuItem() {
-//        firebaseDatabase = FirebaseDatabase.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference foodRef = firebaseDatabase.getReference().child("Menu");
         foodRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                menuList.clear();
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    AllMenu menuItem = dataSnapshot.getValue(AllMenu.class);
-                    if (menuItem != null) {
-                        menuList.add(menuItem);
+                menuItem.clear();
+                for (DataSnapshot foodSnapshot : snapshot.getChildren()) {
+                    AllMenu menuItems = foodSnapshot.getValue(AllMenu.class);
+                    if (menuItems != null) {
+                        menuItem.add(menuItems);
                     }
                 }
                 setAdapter();
+//                if (!menuItem.isEmpty()){
+//                    adapter.notifyDataSetChanged();
+//                }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Log.e("AllItemActivity", "Database error: " + error.getMessage());
             }
         });
     }
     private void setAdapter () {
-        adapter = new MenuItemAdapter(this, menuList);
+        adapter = new MenuItemAdapter(this, menuItem, databaseReference);
         allItemRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         allItemRecyclerView.setAdapter(adapter);
     }

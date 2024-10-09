@@ -8,19 +8,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.database.DatabaseReference;
 import com.ratna.hungryhiveadmin.Model.AllMenu;
 import com.ratna.hungryhiveadmin.databinding.AllItemBinding;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.AllItemViewHolder> {
     Context context;
     ArrayList<AllMenu> menuList;
     private int[] itemQuantity;
 
-    public MenuItemAdapter(Context context, ArrayList<AllMenu> menuList) {
+    public MenuItemAdapter(Context context, ArrayList<AllMenu> menuList, DatabaseReference databaseReference) {
         this.context = context;
         this.menuList = menuList;
         this.itemQuantity = new int[menuList.size()];
