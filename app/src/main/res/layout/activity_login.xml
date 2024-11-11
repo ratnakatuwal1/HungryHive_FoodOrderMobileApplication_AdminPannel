@@ -38,7 +38,7 @@
 
     <EditText
         android:id="@+id/editTextEmailAddress"
-        android:layout_width="@dimen/_230sdp"
+        android:layout_width="@dimen/_250sdp"
         android:layout_height="@dimen/_40sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:autofillHints="emailAddress"
@@ -58,7 +58,7 @@
 
     <EditText
         android:id="@+id/editTextPassword"
-        android:layout_width="@dimen/_230sdp"
+        android:layout_width="@dimen/_250sdp"
         android:layout_height="@dimen/_40sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:autofillHints="password"

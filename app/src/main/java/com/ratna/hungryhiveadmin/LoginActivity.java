@@ -1,10 +1,15 @@
 package com.ratna.hungryhiveadmin;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -27,13 +32,16 @@ import com.ratna.hungryhiveadmin.Model.Admin;
 
 public class LoginActivity extends AppCompatActivity {
     Button adminLoginButton;
+    TextView textViewForgetPassword;
     ImageView imageButtonGoogle;
     EditText editTextEmailAddress, editTextPassword;
     FirebaseAuth mAuth;
     DatabaseReference databaseReference;
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
+    boolean isPasswordVisible = false;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         editTextPassword = findViewById(R.id.editTextPassword);
         editTextEmailAddress = findViewById(R.id.editTextEmailAddress);
         imageButtonGoogle = findViewById(R.id.imageButtonGoogle);
+        textViewForgetPassword = findViewById(R.id.textViewForgetPassword);
 
         mAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("Admins");
@@ -70,7 +79,29 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = gsc.getSignInIntent();
             startActivityForResult(intent, 1000);
         });
+
+        editTextPassword.setOnTouchListener((view, motionEvent) ->{
+            int DRAWABLE_END = 2;
+            if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                if (motionEvent.getRawX() >= (editTextPassword.getRight() - editTextPassword.getCompoundDrawables()[DRAWABLE_END].getBounds().width())) {
+                    if (isPasswordVisible) {
+                        editTextPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                        editTextPassword.setCompoundDrawablesWithIntrinsicBounds(R.drawable.lock, 0, R.drawable.eye_show_svgrepo_com, 0);
+                    } else {
+                        editTextPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                        editTextPassword.setCompoundDrawablesWithIntrinsicBounds(R.drawable.lock, 0, R.drawable.eyeoff, 0);
+                    }
+                    isPasswordVisible = !isPasswordVisible;
+                    editTextPassword.setSelection(editTextPassword.getText().length());
+
+                    view.performClick();
+                    return true;
+                }
+            }
+            return false;
+        });
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -109,18 +140,20 @@ public class LoginActivity extends AppCompatActivity {
                 FirebaseUser user = mAuth.getCurrentUser();
                 if (user != null) {
                     String userId = user.getUid();
-                    databaseReference.child(userId).get().addOnCompleteListener(dbTask -> {
+                    databaseReference.child(userId).child("role").get().addOnCompleteListener(dbTask -> {
                         if (dbTask.isSuccessful()) {
-                            Admin admin = dbTask.getResult().getValue(Admin.class);
-                            if (admin == null) {
-                                saveAdminDetails(user);
-                            } else {
+                            String role = dbTask.getResult().getValue(String.class);
+                            Log.d("LoginActivity", "Fetched role: " + role);
+                            if ("admin".equals(role)) {
                                 Intent intent = new Intent(LoginActivity.this, AdminDashboardActivity.class);
                                 startActivity(intent);
                                 finish();
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Access Denied: This account is not an admin", Toast.LENGTH_SHORT).show();
+                                mAuth.signOut(); // Log out the non-admin user from the admin app
                             }
                         } else {
-                            Toast.makeText(LoginActivity.this, "Failed to retrieve admin data", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Failed to retrieve role", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -131,18 +164,40 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        // Check if the user is already logged in
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            // If user is logged in, navigate to homeScreen
+            Intent intent = new Intent(LoginActivity.this, AdminDashboardActivity.class);
+            startActivity(intent);
+            finish(); // Close the login screen
+        }
+    }
+
     private void saveAdminDetails(FirebaseUser user) {
         String userId = user.getUid();
         String email = user.getEmail();
 
         Admin admin = new Admin(userId, email, "Admin Name", "Admin Address", "Admin Phone", "Profile Image URL");
 
+        // Save the role as "admin" explicitly here
         databaseReference.child(userId).setValue(admin).addOnCompleteListener(saveTask -> {
             if (saveTask.isSuccessful()) {
-                Toast.makeText(LoginActivity.this, "Admin details saved", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(LoginActivity.this, AdminDashboardActivity.class);
-                startActivity(intent);
-                finish();
+                // Set the role to "admin"
+                databaseReference.child(userId).child("role").setValue("admin").addOnCompleteListener(roleTask -> {
+                    if (roleTask.isSuccessful()) {
+                        Toast.makeText(LoginActivity.this, "Admin details saved", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(LoginActivity.this, AdminDashboardActivity.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Failed to save admin role", Toast.LENGTH_SHORT).show();
+                    }
+                });
             } else {
                 Toast.makeText(LoginActivity.this, "Failed to save admin details", Toast.LENGTH_SHORT).show();
             }
