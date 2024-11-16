@@ -15,6 +15,21 @@
         android:theme="@style/Theme.HungryHiveAdmin"
         tools:targetApi="31">
         <activity
+            android:name=".EditMenuItem"
+            android:exported="false" />
+        <activity
+            android:name=".UserDetails"
+            android:exported="false" />
+        <activity
+            android:name=".ViewUsers"
+            android:exported="false" />
+        <activity
+            android:name=".UserDetail"
+            android:exported="false" />
+        <activity
+            android:name=".ViewUser"
+            android:exported="false" />
+        <activity
             android:name=".forgetPassword"
             android:exported="false" />
         <activity

@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/BackgroundColor"
+    tools:context=".AddItemActivity">
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textEditItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/orbitron"
+                android:letterSpacing=".1"
+                android:text="Edit Item"
+                android:textColor="@color/HeadingTextColor"
+                android:textSize="@dimen/_35ssp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/editFoodName"
+                android:layout_width="@dimen/_250sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:autofillHints="name"
+                android:background="@drawable/edittext"
+                android:elevation="@dimen/_5sdp"
+                android:fontFamily="@font/zenantique"
+                android:hint="Item Name"
+                android:outlineSpotShadowColor="@color/shadowColor"
+                android:paddingStart="@dimen/_10sdp"
+                android:textColor="@color/ParagraphTextColor"
+                android:textColorHint="@color/SecondaryTextColor"
+                app:layout_constraintEnd_toEndOf="@+id/textEditItem"
+                app:layout_constraintStart_toStartOf="@+id/textEditItem"
+                app:layout_constraintTop_toBottomOf="@+id/textEditItem" />
+
+            <EditText
+                android:id="@+id/editFoodPrice"
+                android:layout_width="@dimen/_250sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:autofillHints="phone"
+                android:background="@drawable/edittext"
+                android:elevation="@dimen/_5sdp"
+                android:fontFamily="@font/zenantique"
+                android:hint="Item Price"
+                android:inputType="number"
+                android:outlineSpotShadowColor="@color/shadowColor"
+                android:paddingStart="@dimen/_10sdp"
+                android:textColor="@color/ParagraphTextColor"
+                android:textColorHint="@color/SecondaryTextColor"
+                app:layout_constraintEnd_toEndOf="@+id/editFoodName"
+                app:layout_constraintStart_toStartOf="@+id/editFoodName"
+                app:layout_constraintTop_toBottomOf="@+id/editFoodName" />
+
+            <TextView
+                android:id="@+id/textSelectImage"
+                android:layout_width="@dimen/_250sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/dashboard_shape"
+                android:drawableEnd="@drawable/add"
+                android:fontFamily="@font/zenantique"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingRight="@dimen/_15sdp"
+                android:text="Select Image"
+                android:textColor="@color/ParagraphTextColor"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintEnd_toEndOf="@+id/editFoodPrice"
+                app:layout_constraintStart_toStartOf="@+id/editFoodPrice"
+                app:layout_constraintTop_toBottomOf="@+id/editFoodPrice" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardViewSelectImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:cardCornerRadius="@dimen/_15sdp"
+                app:layout_constraintEnd_toEndOf="@+id/textSelectImage"
+                app:layout_constraintStart_toStartOf="@+id/textSelectImage"
+                app:layout_constraintTop_toBottomOf="@+id/textSelectImage">
+
+                <ImageView
+                    android:id="@+id/selectImage"
+                    android:layout_width="@dimen/_175sdp"
+                    android:layout_height="@dimen/_110sdp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/a" />
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/textDescription"
+                android:layout_width="@dimen/_250sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/dashboard_shape"
+                android:fontFamily="@font/zenantique"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/_10sdp"
+                android:text="Short Description"
+                android:textColor="@color/ParagraphTextColor"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintEnd_toEndOf="@+id/textSelectImage"
+                app:layout_constraintStart_toStartOf="@+id/textSelectImage"
+                app:layout_constraintTop_toBottomOf="@+id/cardViewSelectImage" />
+
+            <EditText
+                android:id="@+id/description"
+                android:layout_width="@dimen/_250sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:autofillHints="name"
+                android:background="@drawable/edittext"
+                android:elevation="@dimen/_5sdp"
+                android:fontFamily="@font/zenantique"
+                android:hint="Add short description"
+                android:outlineSpotShadowColor="@color/shadowColor"
+                android:paddingStart="@dimen/_10sdp"
+                android:textColor="@color/ParagraphTextColor"
+                android:textColorHint="@color/SecondaryTextColor"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintEnd_toEndOf="@+id/textDescription"
+                app:layout_constraintStart_toStartOf="@+id/textDescription"
+                app:layout_constraintTop_toBottomOf="@+id/textDescription" />
+
+            <TextView
+                android:id="@+id/textIngredients"
+                android:layout_width="@dimen/_250sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/dashboard_shape"
+                android:fontFamily="@font/zenantique"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/_10sdp"
+                android:text="Ingredients"
+                android:textColor="@color/ParagraphTextColor"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintEnd_toEndOf="@+id/textDescription"
+                app:layout_constraintStart_toStartOf="@+id/textDescription"
+                app:layout_constraintTop_toBottomOf="@+id/description" />
+
+            <EditText
+                android:id="@+id/ingredients"
+                android:layout_width="@dimen/_250sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:autofillHints="name"
+                android:background="@drawable/edittext"
+                android:elevation="@dimen/_5sdp"
+                android:fontFamily="@font/zenantique"
+                android:hint="Add ingredients"
+                android:outlineSpotShadowColor="@color/shadowColor"
+                android:paddingStart="@dimen/_10sdp"
+                android:textColor="@color/ParagraphTextColor"
+                android:textColorHint="@color/SecondaryTextColor"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintEnd_toEndOf="@+id/textIngredients"
+                app:layout_constraintStart_toStartOf="@+id/textIngredients"
+                app:layout_constraintTop_toBottomOf="@+id/textIngredients" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonAddItem"
+                android:layout_width="@dimen/_250sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/proceed"
+                android:elevation="@dimen/_5sdp"
+                android:fontFamily="@font/zenantique"
+                android:letterSpacing=".1"
+                android:outlineSpotShadowColor="@color/shadowColor"
+                android:text="Update Item"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_20ssp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/ingredients"
+                app:layout_constraintStart_toStartOf="@+id/ingredients"
+                app:layout_constraintTop_toBottomOf="@+id/ingredients" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonCancel"
+                android:layout_width="@dimen/_250sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/proceed"
+                android:elevation="@dimen/_5sdp"
+                android:text="Cancel"
+                android:fontFamily="@font/zenantique"
+                android:textStyle="bold"
+                android:letterSpacing=".1"
+                android:textAllCaps="false"
+                android:outlineSpotShadowColor="@color/shadowColor"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_20ssp"
+                app:layout_constraintEnd_toEndOf="@+id/buttonAddItem"
+                app:layout_constraintStart_toStartOf="@+id/buttonAddItem"
+                app:layout_constraintTop_toBottomOf="@+id/buttonAddItem" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

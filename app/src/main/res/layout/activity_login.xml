@@ -67,6 +67,8 @@
         android:drawablePadding="@dimen/_10sdp"
         android:paddingStart="@dimen/_10sdp"
         android:ems="10"
+        android:paddingEnd="@dimen/_5sdp"
+        android:drawableEnd="@drawable/eye_show_svgrepo_com"
         android:fontFamily="@font/zenantique"
         android:hint="@string/adminPassword"
         android:inputType="textPassword"

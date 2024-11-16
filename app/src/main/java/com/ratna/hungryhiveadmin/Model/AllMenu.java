@@ -1,15 +1,16 @@
 package com.ratna.hungryhiveadmin.Model;
 
-public class AllMenu {
-    String foodName;
-    String foodPrice;
-    String foodDescription;
-    String foodIngredients;
-    String foodImage;
+import java.io.Serializable;
+
+public class AllMenu implements Serializable { // Implement Serializable
+    private String foodName;
+    private String foodPrice;
+    private String foodDescription;
+    private String foodIngredients;
+    private String foodImage;
 
     // No-argument constructor required for Firebase deserialization
-    public AllMenu() {
-    }
+    public AllMenu() {}
 
     // Parameterized constructor
     public AllMenu(String foodName, String foodPrice, String foodDescription, String foodIngredients, String foodImage) {
@@ -21,6 +22,7 @@ public class AllMenu {
     }
 
     // Getter and setter methods
+
     public String getFoodName() {
         return foodName;
     }

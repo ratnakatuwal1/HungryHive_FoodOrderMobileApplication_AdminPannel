@@ -53,7 +53,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
         });
 
         CardViewUsers.setOnClickListener(view -> {
-            Intent intent = new Intent(AdminDashboardActivity.this, ViewCustomerList.class);
+            Intent intent = new Intent(AdminDashboardActivity.this, ViewUsers.class);
             startActivity(intent);
         });
     }
