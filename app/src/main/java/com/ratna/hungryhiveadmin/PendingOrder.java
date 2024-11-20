@@ -3,7 +3,6 @@ package com.ratna.hungryhiveadmin;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -21,7 +20,6 @@ import com.ratna.hungryhiveadmin.Adapter.PendingOrderAdapter;
 import com.ratna.hungryhiveadmin.Model.OrderDetails;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class PendingOrder extends AppCompatActivity implements PendingOrderAdapter.onItemClick {
@@ -44,40 +42,44 @@ public class PendingOrder extends AppCompatActivity implements PendingOrderAdapt
         pendingOrderRecyclerView = findViewById(R.id.pendingOrderRecyclerView);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("OrderDetails");
-        dispatchedOrdersReference = firebaseDatabase.getReference("DispatchedOrders");
+        dispatchedOrdersReference = firebaseDatabase.getReference("OrderDispatch");
 
+        // Fetch order details from the database
         getOrderDetails();
 
-//        List<String> customerNames = Arrays.asList("Ratna", "Sanju", "Anjali", "Amar");
-//        List<String> quantity = Arrays.asList("1", "2", "3", "4");
-//        List<Integer> itemImages = Arrays.asList(R.drawable.prabesh, R.drawable.parbesh_sec, R.drawable.prabesh, R.drawable.parbesh_sec);
-
-        // adapter = new PendingOrderAdapter(customerNames, quantity, itemImages);
+        // Set up RecyclerView after data is fetched
         pendingOrderRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        pendingOrderRecyclerView.setAdapter(adapter);
     }
 
     private void getOrderDetails() {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // Clear lists to prevent appending duplicate data
+                listOfOrderItem.clear();
+                listOfName.clear();
+                listOfTotalPrice.clear();
+                listOfImage.clear();
+
+                // Loop through all orders and add them to local lists
                 for (DataSnapshot orderSnapshot : snapshot.getChildren()) {
                     OrderDetails orderDetails = orderSnapshot.getValue(OrderDetails.class);
                     if (orderDetails != null) {
                         listOfOrderItem.add(orderDetails);
                     }
                 }
-                addDataToListForRecyclerView();
+                addDataToListForRecyclerView(); // Populate data for RecyclerView
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Log.e("PendingOrder", "Failed to read value.", error.toException());
             }
         });
     }
 
     private void addDataToListForRecyclerView() {
+        // Populate name, price, and image lists for RecyclerView
         for (OrderDetails orderItem : listOfOrderItem) {
             listOfName.add(orderItem.getUserName());
             listOfTotalPrice.add(orderItem.getTotalPrices());
@@ -85,25 +87,18 @@ public class PendingOrder extends AppCompatActivity implements PendingOrderAdapt
             if (orderItem.getFoodImages() != null && !orderItem.getFoodImages().isEmpty()) {
                 listOfImage.add(orderItem.getFoodImages().get(0));
             }
-
-            if (orderItem.getFoodQuantities() != null && !orderItem.getFoodQuantities().isEmpty()) {
-                // Just make sure the list is not empty or null
-                for (String quantity : orderItem.getFoodQuantities()) {
-                    Log.d("PendingOrder", "Food quantity: " + quantity); // Debugging the food quantity
-                }
-            }
         }
 
+        // Now set the adapter after data is loaded
         setAdapter();
     }
 
     private void setAdapter() {
+        // Initialize the adapter with the loaded data
         adapter = new PendingOrderAdapter(this, listOfName, listOfTotalPrice, listOfImage);
         adapter.setItemClicked(this);
-        pendingOrderRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        pendingOrderRecyclerView.setAdapter(adapter);
+        pendingOrderRecyclerView.setAdapter(adapter); // Set the adapter
     }
-
 
     @Override
     public void onItemClickListener(int position) {
@@ -116,45 +111,44 @@ public class PendingOrder extends AppCompatActivity implements PendingOrderAdapt
 
     @Override
     public void onItemAcceptClickListener(int position) {
-        String childItemPushKey = listOfOrderItem.get(position).getItemPushKey();
-        DatabaseReference clickItemOrderReference = (childItemPushKey != null)
-                ? databaseReference.child(childItemPushKey)
-                : null;
+        Log.d("PendingOrder", "Order accepted at position: " + position);
+        OrderDetails acceptedOrder = listOfOrderItem.get(position);
 
-        if (clickItemOrderReference != null) {
-            clickItemOrderReference.child("AcceptedOrder").setValue(true);
-        }
+        // Show Toast
+        Toast.makeText(this, "Order Accepted", Toast.LENGTH_SHORT).show();
+
+        // Move the order to "OrderDispatch" node using the correct itemPushKey
+        dispatchedOrdersReference.child(acceptedOrder.getItemPushKey()).setValue(acceptedOrder);
+
+        // Remove the order from "OrderDetails"
+        databaseReference.child(acceptedOrder.getItemPushKey()).removeValue();
+
+        // Remove from local lists and update RecyclerView
+        listOfOrderItem.remove(position);
+        listOfName.remove(position);
+        listOfTotalPrice.remove(position);
+        listOfImage.remove(position);
+        adapter.notifyItemRemoved(position);
     }
 
     @Override
     public void onItemDispatchClickListener(int position) {
-        String itemPushKey = listOfOrderItem.get(position).getItemPushKey();
-        DatabaseReference orderReference = FirebaseDatabase.getInstance().getReference("OrderDetails").child(itemPushKey);
+        Log.d("PendingOrder", "Order dispatched at position: " + position);
+        OrderDetails dispatchedOrder = listOfOrderItem.get(position);
 
-        // Remove the order from the database
-        orderReference.removeValue().addOnSuccessListener(aVoid -> {
-            // After removal, add it to dispatched orders
-            OrderDetails orderToDispatch = listOfOrderItem.get(position);
-            dispatchedOrdersReference.push().setValue(orderToDispatch)
-                    .addOnCompleteListener(task -> {
-                        if (task.isSuccessful()) {
-                            // Successfully dispatched, remove from list and update the adapter
-                            listOfOrderItem.remove(position);
-                            listOfName.remove(position);
-                            listOfTotalPrice.remove(position);
-                            listOfImage.remove(position);
+        // Move the order to "OrderDispatch"
+        dispatchedOrdersReference.child(dispatchedOrder.getItemPushKey()).setValue(dispatchedOrder);
 
-                            adapter.notifyItemRemoved(position);
-                            adapter.notifyItemRangeChanged(position, adapter.getItemCount());
+        // Remove the order from "OrderDetails"
+        databaseReference.child(dispatchedOrder.getItemPushKey()).removeValue();
 
-                            Toast.makeText(PendingOrder.this, "Order Dispatched and Removed from Pending", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(PendingOrder.this, "Failed to dispatch order", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-        }).addOnFailureListener(e -> {
-            Toast.makeText(PendingOrder.this, "Failed to remove order from pending", Toast.LENGTH_SHORT).show();
-        });
-}
+        // Remove from local lists and update RecyclerView
+        listOfOrderItem.remove(position);
+        listOfName.remove(position);
+        listOfTotalPrice.remove(position);
+        listOfImage.remove(position);
+        adapter.notifyItemRemoved(position);
 
+        Toast.makeText(this, "Order Dispatched and Moved", Toast.LENGTH_SHORT).show();
+    }
 }

@@ -64,7 +64,7 @@ public class DeliveryAdapter extends RecyclerView.Adapter<DeliveryAdapter.Delive
         CardView statusCard;
         public DeliveryViewHolder(@NonNull View itemView) {
             super(itemView);
-            textCustomerName = itemView.findViewById(R.id.textCustomerName);
+            textCustomerName = itemView.findViewById(R.id.customerName);
             textPayment = itemView.findViewById(R.id.textPayment);
             textDeliveryStatus = itemView.findViewById(R.id.textView4);
             statusCard = itemView.findViewById(R.id.status);
