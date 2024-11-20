@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.ratna.hungryhiveadmin.Model.User;
 import com.ratna.hungryhiveadmin.R;
 
@@ -36,6 +37,15 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
         User user = users.get(position);
         holder.textUserName.setText(user.getName());
+
+        if (user.getProfileImageUrl() != null && !user.getProfileImageUrl().isEmpty()) {
+            Glide.with(holder.imageView.getContext())
+                    .load(user.getProfileImageUrl())
+                    .placeholder(R.drawable.sampleimage) // Placeholder image
+                    .into(holder.imageView);
+        } else {
+            holder.imageView.setImageResource(R.drawable.sampleimage); // Default avatar if no image
+        }
         holder.itemView.setOnClickListener(v -> listener.onItemClick(user));
     }
 

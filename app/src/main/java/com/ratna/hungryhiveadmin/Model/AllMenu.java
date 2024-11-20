@@ -2,7 +2,8 @@ package com.ratna.hungryhiveadmin.Model;
 
 import java.io.Serializable;
 
-public class AllMenu implements Serializable { // Implement Serializable
+public class AllMenu implements Serializable {
+    private String id; // Firebase key
     private String foodName;
     private String foodPrice;
     private String foodDescription;
@@ -13,7 +14,8 @@ public class AllMenu implements Serializable { // Implement Serializable
     public AllMenu() {}
 
     // Parameterized constructor
-    public AllMenu(String foodName, String foodPrice, String foodDescription, String foodIngredients, String foodImage) {
+    public AllMenu(String id, String foodName, String foodPrice, String foodDescription, String foodIngredients, String foodImage) {
+        this.id = id;
         this.foodName = foodName;
         this.foodPrice = foodPrice;
         this.foodDescription = foodDescription;
@@ -21,7 +23,15 @@ public class AllMenu implements Serializable { // Implement Serializable
         this.foodImage = foodImage;
     }
 
-    // Getter and setter methods
+    // Getter and setter methods for each field
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getFoodName() {
         return foodName;

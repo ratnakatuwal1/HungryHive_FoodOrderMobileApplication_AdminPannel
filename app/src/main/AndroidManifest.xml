@@ -15,6 +15,12 @@
         android:theme="@style/Theme.HungryHiveAdmin"
         tools:targetApi="31">
         <activity
+            android:name=".OrderDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OrderDispatch"
+            android:exported="false" />
+        <activity
             android:name=".EditMenuItem"
             android:exported="false" />
         <activity

@@ -2,6 +2,7 @@ package com.ratna.hungryhiveadmin;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,7 +12,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class AdminDashboardActivity extends AppCompatActivity {
-    CardView cardViewAddItem, cardViewAllItem, cardViewAdminProfile, cardViewCreateNewAdmin, CardViewOrderDispatch, CardViewUsers;
+    CardView cardViewAddItem, cardViewAllItem, cardViewAdminProfile, CardViewOrderDispatch, CardViewUsers;
+    TextView textPendingOrder, textCompletedOrder, textEarning;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +24,12 @@ public class AdminDashboardActivity extends AppCompatActivity {
         cardViewAddItem = findViewById(R.id.cardViewAddItem);
         cardViewAllItem = findViewById(R.id.cardViewAllItem);
         cardViewAdminProfile = findViewById(R.id.cardViewAdminProfile);
-        cardViewCreateNewAdmin = findViewById(R.id.cardViewCreateNewAdmin);
+//        cardViewCreateNewAdmin = findViewById(R.id.cardViewCreateNewAdmin);
         CardViewOrderDispatch = findViewById(R.id.CardViewOrderDispatch);
         CardViewUsers = findViewById(R.id.CardViewUsers);
+        textPendingOrder = findViewById(R.id.textPendingOrder);
+        textCompletedOrder = findViewById(R.id.textCompletedOrder);
+        textEarning = findViewById(R.id.textEarning);
 
         cardViewAddItem.setOnClickListener(view -> {
             Intent intent = new Intent(AdminDashboardActivity.this, AddItemActivity.class);
@@ -42,13 +47,13 @@ public class AdminDashboardActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        cardViewCreateNewAdmin.setOnClickListener(view -> {
-            Intent intent = new Intent(AdminDashboardActivity.this, AddNewAdmin.class);
-            startActivity(intent);
-        });
+//        cardViewCreateNewAdmin.setOnClickListener(view -> {
+//            Intent intent = new Intent(AdminDashboardActivity.this, AddNewAdmin.class);
+//            startActivity(intent);
+//        });
 
         CardViewOrderDispatch.setOnClickListener(view -> {
-            Intent intent = new Intent(AdminDashboardActivity.this, PendingOrder.class);
+            Intent intent = new Intent(AdminDashboardActivity.this, OrderDispatch.class);
             startActivity(intent);
         });
 
@@ -56,5 +61,11 @@ public class AdminDashboardActivity extends AppCompatActivity {
             Intent intent = new Intent(AdminDashboardActivity.this, ViewUsers.class);
             startActivity(intent);
         });
+
+        textPendingOrder.setOnClickListener(v -> {
+            Intent intent = new Intent(AdminDashboardActivity.this, PendingOrder.class);
+            startActivity(intent);
+        });
+
     }
 }

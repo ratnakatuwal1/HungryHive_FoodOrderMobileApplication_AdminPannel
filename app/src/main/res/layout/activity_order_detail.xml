@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OrderDetailActivity"
+    android:background="@color/BackgroundColor">
+
+    <TextView
+        android:id="@+id/textOrderDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Order Detail"
+        android:layout_marginTop="@dimen/_24sdp"
+        android:fontFamily="@font/orbitron"
+        android:textSize="@dimen/_24ssp"
+        android:textColor="@color/HeadingTextColor"
+        android:textStyle="bold"
+        android:letterSpacing=".1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/editTextName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:fontFamily="@font/zenantique"
+        android:text="Name: Ratna Katuwal"
+        android:textColor="@color/ParagraphTextColor"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textOrderDetail" />
+
+    <TextView
+        android:id="@+id/editTextAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/zenantique"
+        android:text="Address: Gothatar"
+        android:textColor="@color/ParagraphTextColor"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintStart_toStartOf="@+id/editTextName"
+        app:layout_constraintTop_toBottomOf="@+id/editTextName" />
+
+    <TextView
+        android:id="@+id/editTextPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/zenantique"
+        android:text="Phone: 9898989898"
+        android:textColor="@color/ParagraphTextColor"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintStart_toStartOf="@+id/editTextAddress"
+        app:layout_constraintTop_toBottomOf="@+id/editTextAddress" />
+
+    <TextView
+        android:id="@+id/editTextTotalPay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/zenantique"
+        android:text="Total pay: "
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textColor="@color/ParagraphTextColor"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintStart_toStartOf="@+id/editTextPhone"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/orderRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_5sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTotalPay" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.ratna.hungryhiveadmin.EditMenuItem;
 import com.ratna.hungryhiveadmin.Model.AllMenu;
@@ -27,11 +28,18 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.AllIte
     ArrayList<AllMenu> menuList;
     private int[] itemQuantity;
     private DatabaseReference databaseReference;
+    private String userId;
 
     public MenuItemAdapter(Context context, ArrayList<AllMenu> menuList, DatabaseReference databaseReference) {
         this.context = context;
         this.menuList = menuList;
         this.databaseReference = databaseReference;
+
+        // Get user ID from Firebase Authentication
+        this.userId = FirebaseAuth.getInstance().getCurrentUser() != null
+                ? FirebaseAuth.getInstance().getCurrentUser().getUid()
+                : null;
+
         this.itemQuantity = new int[menuList.size()];
         Arrays.fill(itemQuantity, 1);
     }
@@ -101,11 +109,13 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.AllIte
     }
 
     private void removeItem(int position, AllMenu menuItem) {
-        String itemKey = menuItem.getId(); // Assumes AllMenu has an `id` field for Firebase key
-        if (itemKey != null && !itemKey.isEmpty()) {
-            databaseReference.child(itemKey).removeValue() // Remove from Firebase
+        String itemKey = menuItem.getId();
+
+        if (itemKey != null && !itemKey.isEmpty() && userId != null) {
+            // Use userId to reference user-specific items in the database
+            databaseReference.child("Menu").child(userId).child("menuItems").child(itemKey).removeValue()
                     .addOnSuccessListener(aVoid -> {
-                        menuList.remove(position); // Remove locally
+                        menuList.remove(position);
                         notifyItemRemoved(position);
                         notifyItemRangeChanged(position, menuList.size());
                     })
@@ -113,14 +123,14 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.AllIte
                         Toast.makeText(context, "Unable to remove item", Toast.LENGTH_SHORT).show();
                     });
         } else {
-            Toast.makeText(context, "Invalid item key. Cannot delete.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Invalid item key or user ID. Cannot delete.", Toast.LENGTH_SHORT).show();
         }
     }
 
     private void editItem(AllMenu menuItem) {
         Intent intent = new Intent(context, EditMenuItem.class);
-        intent.putExtra("menuItem", menuItem); // Pass serialized item details
-        intent.putExtra("itemKey", menuItem.getId()); // Pass Firebase key for editing
+        intent.putExtra("menuItem", menuItem);
+        intent.putExtra("itemKey", menuItem.getId());
         context.startActivity(intent);
     }
 }

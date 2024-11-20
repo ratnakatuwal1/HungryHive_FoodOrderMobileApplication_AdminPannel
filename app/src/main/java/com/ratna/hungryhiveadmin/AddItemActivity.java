@@ -110,6 +110,7 @@ public class AddItemActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(Uri uri) {
                             AllMenu newItem = new AllMenu(
+                                    newItemKey,
                                     foodName,
                                     foodPrice,
                                     foodDescription,

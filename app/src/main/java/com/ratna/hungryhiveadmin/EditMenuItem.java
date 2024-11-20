@@ -8,59 +8,77 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.ratna.hungryhiveadmin.Model.AllMenu;
 
 public class EditMenuItem extends AppCompatActivity {
 
-    private EditText editFoodName;
-    private EditText editFoodPrice;
-    private EditText description;
-    private EditText ingredients;
+    private EditText editFoodName, editFoodPrice, description, ingredients;
     private ImageView selectImage;
-    private Button buttonAddItem;
-    private Button buttonCancel;
+    private Button buttonSaveItem, buttonCancel;
+
+    private AllMenu menuItem; // Stores the item being edited
+    private String itemKey; // Firebase key for the item
+    private DatabaseReference databaseReference; // Reference to Firebase
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_edit_menu_item);
 
-        // Initialize the views
+        // Initialize views
         editFoodName = findViewById(R.id.editFoodName);
         editFoodPrice = findViewById(R.id.editFoodPrice);
         description = findViewById(R.id.description);
         ingredients = findViewById(R.id.ingredients);
         selectImage = findViewById(R.id.selectImage);
-        buttonAddItem = findViewById(R.id.buttonAddItem);
+        buttonSaveItem = findViewById(R.id.buttonAddItem);
         buttonCancel = findViewById(R.id.buttonCancel);
 
-        // Set listeners for Update and Cancel buttons
-        buttonAddItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateItem();
-            }
-        });
+        // Firebase database reference
+        databaseReference = FirebaseDatabase.getInstance().getReference();
 
-        buttonCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cancelEdit();
+        // Get the menu item and key from the intent
+        Intent intent = getIntent();
+        menuItem = (AllMenu) intent.getSerializableExtra("menuItem");
+        itemKey = intent.getStringExtra("itemKey");
+
+        // Populate the fields with existing item data
+        if (menuItem != null) {
+            editFoodName.setText(menuItem.getFoodName());
+            editFoodPrice.setText(menuItem.getFoodPrice());
+            description.setText(menuItem.getFoodDescription());
+            ingredients.setText(menuItem.getFoodIngredients());
+
+            // Load image using Glide
+            if (menuItem.getFoodImage() != null) {
+                Glide.with(this)
+                        .load(menuItem.getFoodImage())
+                        .into(selectImage);
             }
-        });
+        }
+
+        // Set listener for the Save button
+        buttonSaveItem.setOnClickListener(v -> updateItem());
+
+        // Set listener for the Cancel button
+        buttonCancel.setOnClickListener(v -> cancelEdit());
     }
 
     /**
      * Method to handle updating the item.
      */
     private void updateItem() {
-        // Fetch the entered data
-        String name = editFoodName.getText().toString();
-        String price = editFoodPrice.getText().toString();
-        String desc = description.getText().toString();
-        String ing = ingredients.getText().toString();
+        // Fetch entered data
+        String name = editFoodName.getText().toString().trim();
+        String price = editFoodPrice.getText().toString().trim();
+        String desc = description.getText().toString().trim();
+        String ing = ingredients.getText().toString().trim();
 
         // Check if all fields are filled
         if (name.isEmpty() || price.isEmpty() || desc.isEmpty() || ing.isEmpty()) {
@@ -68,21 +86,36 @@ public class EditMenuItem extends AppCompatActivity {
             return;
         }
 
-        // Save updated data logic goes here (e.g., update database)
-        Toast.makeText(this, "Item updated successfully!", Toast.LENGTH_SHORT).show();
+        // Update the item locally
+        if (menuItem != null && itemKey != null) {
+        menuItem.setFoodName(name);
+        menuItem.setFoodPrice(price);
+        menuItem.setFoodDescription(desc);
+        menuItem.setFoodIngredients(ing);
 
-        // Optionally finish activity and return to previous screen
-        finish();
+        // Update the item in Firebase
+            databaseReference.child("Menu").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                    .child("menuItems").child(itemKey).setValue(menuItem)
+                    .addOnSuccessListener(aVoid -> {
+                        Toast.makeText(this, "Item updated successfully!", Toast.LENGTH_SHORT).show();
+
+                        // Pass the updated item back to the adapter
+                        Intent returnIntent = new Intent();
+                        returnIntent.putExtra("updatedMenuItem", menuItem);
+                        returnIntent.putExtra("itemKey", itemKey);
+                        setResult(RESULT_OK, returnIntent);
+
+                        finish();
+                    })
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(this, "Failed to update item in database", Toast.LENGTH_SHORT).show();
+                    });
+        }
     }
-
-    /**
-     * Method to handle cancel action.
-     */
     private void cancelEdit() {
         // Show a confirmation toast or message
         Toast.makeText(this, "Edit canceled", Toast.LENGTH_SHORT).show();
-
-        // Return to the previous screen
+        // Return to the previous screen without saving
         finish();
     }
 }

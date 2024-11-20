@@ -182,12 +182,13 @@ public class LoginActivity extends AppCompatActivity {
         String userId = user.getUid();
         String email = user.getEmail();
 
-        Admin admin = new Admin(userId, email, "Admin Name", "Admin Address", "Admin Phone", "Profile Image URL");
+        // Set all details to null except for email and password
+        Admin admin = new Admin(userId, email, null, null, null, null); // null for name, phone, address, etc.
 
-        // Save the role as "admin" explicitly here
+        // Save the admin details in the database
         databaseReference.child(userId).setValue(admin).addOnCompleteListener(saveTask -> {
             if (saveTask.isSuccessful()) {
-                // Set the role to "admin"
+                // Set the role to "admin" explicitly here
                 databaseReference.child(userId).child("role").setValue("admin").addOnCompleteListener(roleTask -> {
                     if (roleTask.isSuccessful()) {
                         Toast.makeText(LoginActivity.this, "Admin details saved", Toast.LENGTH_SHORT).show();

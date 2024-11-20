@@ -3,7 +3,7 @@
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="transparent">#00000000</color>
-
+    <color name="regular">#000000</color>
     <color name="shadowColor">#AEC6CF</color>
 
     <color name="SecondaryTextColor">#757575</color>

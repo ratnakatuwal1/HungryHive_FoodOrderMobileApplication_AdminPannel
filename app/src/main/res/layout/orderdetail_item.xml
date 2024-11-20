@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/BackgroundColor"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.cardview.widget.CardView
         android:layout_width="@dimen/_285sdp"
@@ -22,7 +21,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/customerName"
+                android:id="@+id/foodName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/zenantique"
@@ -30,12 +29,12 @@
                 android:layout_marginStart="@dimen/_5sdp"
                 android:textColor="@color/ParagraphTextColor"
                 android:textSize="@dimen/_14ssp"
-                app:layout_constraintBottom_toTopOf="@+id/textQuantity"
+                app:layout_constraintBottom_toTopOf="@+id/foodQuantity"
                 app:layout_constraintStart_toEndOf="@+id/imageCartFood"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textQuantity"
+                android:id="@+id/foodQuantity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/zenantique"
@@ -45,19 +44,18 @@
                 android:textSize="@dimen/_14ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageCartFood"
-                app:layout_constraintTop_toBottomOf="@+id/customerName" />
+                app:layout_constraintTop_toBottomOf="@+id/foodName" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/buttonPending"
-                android:layout_width="@dimen/_90sdp"
-                android:layout_height="@dimen/_35sdp"
+            <TextView
+                android:id="@+id/foodPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_10sdp"
-                android:background="@drawable/proceed"
                 android:fontFamily="@font/zenantique"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_14ssp"
+                android:textSize="@dimen/_16ssp"
+                android:textColor="@color/SecondaryTextColor"
                 android:textAllCaps="false"
-                android:text="Accept"
+                android:text="RS."
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

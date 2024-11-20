@@ -5,6 +5,7 @@
     <color name="black">#000000</color>
     <color name="transparent">#00000000</color>
     <color name="SecondaryTextColor">#B0BEC5</color>
+    <color name="regular">#ffffff</color>
 
     <color name="shadowColor">#AEC6CF</color>
 
