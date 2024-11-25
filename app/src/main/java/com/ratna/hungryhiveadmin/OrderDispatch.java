@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.ratna.hungryhiveadmin.Adapter.DeliveryAdapter;
+import com.ratna.hungryhiveadmin.Model.OrderDetails;
 
 import java.util.ArrayList;
 
@@ -65,12 +66,15 @@ public class OrderDispatch extends AppCompatActivity {
                 moneyStatuses.clear();
 
                 for (DataSnapshot orderSnapshot : snapshot.getChildren()) {
-                    String customerName = orderSnapshot.child("customerName").getValue(String.class);
-                    String quantity = orderSnapshot.child("quantity").getValue(String.class);
+                    String customerName = orderSnapshot.child("userName").getValue(String.class); // Assuming 'userName' holds the name
+                    Boolean paymentReceived = orderSnapshot.child("paymentReceived").getValue(Boolean.class); // true/false
 
-                    if (customerName != null && quantity != null) {
+                    // Set a default payment status based on the database value
+                    String paymentStatus = paymentReceived != null && paymentReceived ? "Received" : "Not Received";
+
+                    if (customerName != null) {
                         customerNames.add(customerName);
-                        moneyStatuses.add("Pending"); // Set an initial status
+                        moneyStatuses.add(paymentStatus);
                     }
                 }
 
@@ -83,4 +87,5 @@ public class OrderDispatch extends AppCompatActivity {
             }
         });
     }
+
 }

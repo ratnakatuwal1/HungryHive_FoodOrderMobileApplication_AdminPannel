@@ -2,9 +2,11 @@ package com.ratna.hungryhiveadmin.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -64,8 +66,8 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.AllIte
 
     public class AllItemViewHolder extends RecyclerView.ViewHolder {
         TextView textFoodName, textFoodAmount, textQty;
-        ImageView imageCartFood, imageButtonEdit;
-        Button buttonMinus, buttonPlus, buttonDelete;
+        ImageView imageCartFood;
+        ImageButton buttonMinus, buttonPlus, buttonDelete, imageButtonEdit;
 
         public AllItemViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -109,11 +111,15 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.AllIte
     }
 
     private void removeItem(int position, AllMenu menuItem) {
-        String itemKey = menuItem.getId();
+        // Debug log to check if ID is correct
+        Log.d("DeleteItem", "User ID: " + userId);
+        String itemKey = null;
+        Log.d("DeleteItem", "Item Key: " + itemKey);
+        itemKey = menuItem.getId();
 
         if (itemKey != null && !itemKey.isEmpty() && userId != null) {
             // Use userId to reference user-specific items in the database
-            databaseReference.child("Menu").child(userId).child("menuItems").child(itemKey).removeValue()
+            databaseReference.child("Menu").child(userId).child(itemKey).removeValue()
                     .addOnSuccessListener(aVoid -> {
                         menuList.remove(position);
                         notifyItemRemoved(position);

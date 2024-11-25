@@ -20,7 +20,7 @@ public class EditMenuItem extends AppCompatActivity {
 
     private EditText editFoodName, editFoodPrice, description, ingredients;
     private ImageView selectImage;
-    private Button buttonSaveItem, buttonCancel;
+    private Button buttonAddItem, buttonCancel;
 
     private AllMenu menuItem; // Stores the item being edited
     private String itemKey; // Firebase key for the item
@@ -37,7 +37,7 @@ public class EditMenuItem extends AppCompatActivity {
         description = findViewById(R.id.description);
         ingredients = findViewById(R.id.ingredients);
         selectImage = findViewById(R.id.selectImage);
-        buttonSaveItem = findViewById(R.id.buttonAddItem);
+        buttonAddItem = findViewById(R.id.buttonAddItem);
         buttonCancel = findViewById(R.id.buttonCancel);
 
         // Firebase database reference
@@ -64,7 +64,7 @@ public class EditMenuItem extends AppCompatActivity {
         }
 
         // Set listener for the Save button
-        buttonSaveItem.setOnClickListener(v -> updateItem());
+        buttonAddItem.setOnClickListener(v -> updateItem());
 
         // Set listener for the Cancel button
         buttonCancel.setOnClickListener(v -> cancelEdit());
@@ -95,7 +95,7 @@ public class EditMenuItem extends AppCompatActivity {
 
         // Update the item in Firebase
             databaseReference.child("Menu").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                    .child("menuItems").child(itemKey).setValue(menuItem)
+                    .child(itemKey).setValue(menuItem)
                     .addOnSuccessListener(aVoid -> {
                         Toast.makeText(this, "Item updated successfully!", Toast.LENGTH_SHORT).show();
 
